@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://characters/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://art/0x72_DungeonTilesetII_v1.3.png" type="Texture" id=2]
@@ -6,6 +6,9 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.67644, 4.53376 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5.06902, 4.53438 )
 
 [node name="PlayableCharacter" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
@@ -19,3 +22,10 @@ region_rect = Rect2( 128, 0, 16, 32 )
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2( -0.311054, -4.48404 )
 shape = SubResource( 1 )
+
+[node name="Hitbox" parent="." index="3"]
+collision_mask = 1024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="1"]
+position = Vector2( -0.58992, -4.48341 )
+shape = SubResource( 2 )

@@ -1,6 +1,6 @@
 extends Character
 
-const HAND_RADIUS = 32
+const HAND_RADIUS = 16
 
 func _unhandled_input(event):
 	if(event.is_action_pressed("attack") && attack_cooldown.is_stopped()):

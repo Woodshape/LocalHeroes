@@ -96,6 +96,11 @@ dodge={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_11="player_hazard"
+2d_physics/layer_12="enemy_hazard"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

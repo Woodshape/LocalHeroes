@@ -25,7 +25,7 @@ func _on_Hitbox_area_entered(area):
 		return
 
 	if area is DamageArea:
-		if !self in area.exceptions:
+		if !(self in area.exceptions):
 			damage(area.damage_amount, area.knockback_strength, area, area.attacker)
 
 func damage(amount, knockback_strength, source, attacker):
