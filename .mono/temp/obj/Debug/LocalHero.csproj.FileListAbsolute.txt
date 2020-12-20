@@ -1,0 +1,8 @@
+D:\Development\Godot\LocalHeroes\.mono\temp\bin\Debug\LocalHero.dll
+D:\Development\Godot\LocalHeroes\.mono\temp\bin\Debug\LocalHero.pdb
+D:\Development\Godot\LocalHeroes\.mono\temp\obj\Debug\LocalHero.csprojAssemblyReference.cache
+D:\Development\Godot\LocalHeroes\.mono\temp\obj\Debug\LocalHero.AssemblyInfoInputs.cache
+D:\Development\Godot\LocalHeroes\.mono\temp\obj\Debug\LocalHero.AssemblyInfo.cs
+D:\Development\Godot\LocalHeroes\.mono\temp\obj\Debug\LocalHero.csproj.CoreCompileInputs.cache
+D:\Development\Godot\LocalHeroes\.mono\temp\obj\Debug\LocalHero.dll
+D:\Development\Godot\LocalHeroes\.mono\temp\obj\Debug\LocalHero.pdb

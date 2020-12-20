@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://PlayableCharacter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://characters/PlayableCharacter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://enemies/Grunt.tscn" type="PackedScene" id=2]
+
+[sub_resource type="TileSet" id=1]
 
 [node name="Arena" type="Node2D"]
 
@@ -8,3 +11,11 @@
 
 [node name="PlayableCharacter" parent="Entities" instance=ExtResource( 1 )]
 position = Vector2( 163, 166 )
+
+[node name="Grunt" parent="Entities" instance=ExtResource( 2 )]
+position = Vector2( 398.101, 206.475 )
+
+[node name="Floor" type="TileMap" parent="."]
+tile_set = SubResource( 1 )
+cell_size = Vector2( 24, 24 )
+format = 1
