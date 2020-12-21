@@ -3,7 +3,7 @@
 [ext_resource path="res://characters/Character.gd" type="Script" id=1]
 [ext_resource path="res://Hitbox.tscn" type="PackedScene" id=2]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 resource_name = "damage"
 length = 0.1
 tracks/0/type = "value"
@@ -36,7 +36,7 @@ tracks/0/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "reset"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:visible")
@@ -79,8 +79,11 @@ one_shot = true
 [node name="Hitbox" parent="." instance=ExtResource( 2 )]
 collision_layer = 0
 collision_mask = 2048
+immunity_duration = 1.0
 
 [node name="DamageAnimator" type="AnimationPlayer" parent="."]
-anims/damage = SubResource( 3 )
+anims/damage = SubResource( 1 )
 anims/invulnerability = SubResource( 2 )
-anims/reset = SubResource( 4 )
+anims/reset = SubResource( 3 )
+[connection signal="damaged" from="Hitbox" to="." method="_on_Hitbox_damaged"]
+[connection signal="immunity_ended" from="Hitbox" to="." method="_on_Hitbox_immunity_ended"]
