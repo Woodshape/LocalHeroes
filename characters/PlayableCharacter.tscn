@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://characters/Character.tscn" type="PackedScene" id=1]
-[ext_resource path="res://art/0x72_DungeonTilesetII_v1.3.png" type="Texture" id=2]
+[ext_resource path="res://items/Weapon.tscn" type="PackedScene" id=2]
 [ext_resource path="res://characters/PlayableCharacter.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -14,11 +14,8 @@ extents = Vector2( 5.06902, 4.53438 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="Body" index="0"]
-position = Vector2( 0, -16 )
-texture = ExtResource( 2 )
-region_enabled = true
-region_rect = Rect2( 128, 0, 16, 32 )
+[node name="Sprite" parent="Body" index="0"]
+visible = true
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2( -0.311054, -4.48404 )
@@ -30,3 +27,5 @@ collision_mask = 1024
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="1"]
 position = Vector2( -0.58992, -4.48341 )
 shape = SubResource( 2 )
+
+[node name="Weapon" parent="Pivot" index="0" instance=ExtResource( 2 )]

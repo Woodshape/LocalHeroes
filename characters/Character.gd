@@ -13,13 +13,21 @@ export (Factions) var faction = 0
 onready var damage_animator = $DamageAnimator
 onready var attack_cooldown = $Timers/AttackCooldown
 onready var hitbox = $Hitbox
+onready var pivot = $Pivot
 
 onready var health = max_health setget set_health
 
 var velocity := Vector2()
 var move_input := Vector2()
+var look := Vector2()
 
+var weapon = null
 var target = null setget set_target,get_target
+
+func _physics_process(delta):
+	pivot.rotation = (get_global_mouse_position() - pivot.global_position).angle()
+#	if weapon != null:
+#		weapon.update_position(look)
 	
 func _apply_movement():
 	velocity = move_and_slide(velocity)	
@@ -27,7 +35,10 @@ func _apply_movement():
 func move_towards(to):
 	var displacement = to - global_position
 	var normal = displacement.normalized()
-	velocity = lerp(velocity, normal * movespeed_units * Globals.UNIT_SIZE, 0.2)
+	velocity = lerp(velocity, normal * movespeed_units * Globals.UNIT_SIZE, get_move_weight())
+	
+func get_move_weight():
+	return 0.2
 	
 func get_ideal_target():
 	var potential_targets = []

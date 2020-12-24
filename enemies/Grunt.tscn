@@ -17,6 +17,7 @@ extents = Vector2( 5, 8 )
 
 [node name="Grunt" instance=ExtResource( 1 )]
 scale = Vector2( 2, 2 )
+collision_layer = 32
 script = ExtResource( 5 )
 movespeed_units = 3.0
 
@@ -45,3 +46,5 @@ attacker = NodePath("..")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" index="0"]
 position = Vector2( 1, -8 )
 shape = SubResource( 2 )
+[connection signal="damaged" from="Hitbox" to="." method="_on_Hitbox_damaged"]
+[connection signal="immunity_ended" from="Hitbox" to="." method="_on_Hitbox_immunity_ended"]
