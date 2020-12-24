@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node
+
+const UNIT_SIZE = 16
+
+var player = null
+var time = 0
+
+var level = null
+var arena = null
+
+func _ready():
+	pass
+
+func _process(delta):
+	time += delta
+"
+
+[node name="Globals" type="Node"]
+script = SubResource( 1 )

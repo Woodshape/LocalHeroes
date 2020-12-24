@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Character",
+"class": "AI",
+"language": "GDScript",
+"path": "res://enemies/AI.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Character",
 "language": "GDScript",
@@ -18,10 +23,17 @@ _global_script_classes=[ {
 "class": "DamageArea",
 "language": "GDScript",
 "path": "res://attack/DamageArea.gd"
+}, {
+"base": "AI",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://enemies/Enemy.gd"
 } ]
 _global_script_class_icons={
+"AI": "",
 "Character": "",
-"DamageArea": ""
+"DamageArea": "",
+"Enemy": ""
 }
 
 [application]
@@ -29,6 +41,10 @@ _global_script_class_icons={
 config/name="LocalHero"
 run/main_scene="res://Arena.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Globals="*res://Globals.gd"
 
 [display]
 
@@ -98,6 +114,7 @@ dodge={
 
 [layer_names]
 
+2d_physics/layer_6="character"
 2d_physics/layer_11="player_hazard"
 2d_physics/layer_12="enemy_hazard"
 

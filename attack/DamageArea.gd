@@ -3,12 +3,16 @@ class_name DamageArea
 
 signal hit()
 
-export var damage_amount = 1
+export var damage_amount = 10
 export var knockback_strength = 1
 export var use_exceptions = false
+export (NodePath) var attacker = null
 
-var attacker
 var exceptions = []
+
+func _ready():
+	if attacker != null:
+		attacker = get_node_or_null(attacker)
 
 func on_hit(hitbox):
 	if use_exceptions:

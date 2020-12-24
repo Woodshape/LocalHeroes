@@ -21,9 +21,12 @@ func remove_exeption(node : Node2D):
 		exceptions.erase(node)
 
 func _on_Hitbox_area_entered(area):
+	# don't damage if
+	# we want to skip this hitbox or we are immune
 	if area in exceptions || immunity_timer.is_stopped():
 		return
 
+	# or if we ignore our own hitbox
 	if area is DamageArea:
 		if !(self in area.exceptions):
 			damage(area.damage_amount, area.knockback_strength, area, area.attacker)
