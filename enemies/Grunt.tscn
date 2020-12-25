@@ -1,42 +1,43 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://enemies/Enemy.tscn" type="PackedScene" id=1]
-[ext_resource path="res://art/0x72_DungeonTilesetII_v1.3.png" type="Texture" id=2]
 [ext_resource path="res://attack/DamageArea.tscn" type="PackedScene" id=3]
 [ext_resource path="res://enemies/FSM/GruntFSM.gd" type="Script" id=4]
 [ext_resource path="res://enemies/Grunt.gd" type="Script" id=5]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3.1091, 5.54551 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 4, 4 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 5, 8 )
+
+[sub_resource type="CircleShape2D" id=4]
 
 [node name="Grunt" instance=ExtResource( 1 )]
 scale = Vector2( 2, 2 )
-collision_layer = 32
 script = ExtResource( 5 )
 movespeed_units = 3.0
 
 [node name="StateMachine" parent="." index="0"]
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="Body" index="0"]
-position = Vector2( 0, -16 )
-texture = ExtResource( 2 )
-region_enabled = true
+[node name="Sprite" parent="Body" index="0"]
+visible = true
 region_rect = Rect2( 368, 192, 16, 32 )
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2( 1, -6 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
+
+[node name="Hitbox" parent="." index="4"]
+immunity_duration = 0.2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2( 1, -4 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="DamageArea" parent="." index="5" instance=ExtResource( 3 )]
 collision_layer = 1024
@@ -45,6 +46,8 @@ attacker = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" index="0"]
 position = Vector2( 1, -8 )
-shape = SubResource( 2 )
-[connection signal="damaged" from="Hitbox" to="." method="_on_Hitbox_damaged"]
-[connection signal="immunity_ended" from="Hitbox" to="." method="_on_Hitbox_immunity_ended"]
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D" parent="PersonalSpace" index="0"]
+position = Vector2( 0.936443, -8.06017 )
+shape = SubResource( 4 )

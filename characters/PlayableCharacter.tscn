@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://characters/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://items/Weapon.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@ extents = Vector2( 7.67644, 4.53376 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 5.06902, 4.53438 )
+
+[sub_resource type="CircleShape2D" id=3]
 
 [node name="PlayableCharacter" instance=ExtResource( 1 )]
 scale = Vector2( 2, 2 )
@@ -29,3 +31,7 @@ position = Vector2( -0.58992, -4.48341 )
 shape = SubResource( 2 )
 
 [node name="Weapon" parent="Pivot" index="0" instance=ExtResource( 2 )]
+
+[node name="CollisionShape2D" parent="PersonalSpace" index="0"]
+position = Vector2( 0, -6 )
+shape = SubResource( 3 )

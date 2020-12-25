@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://characters/Character.gd" type="Script" id=1]
 [ext_resource path="res://Hitbox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://characters/StateMachine.tscn" type="PackedScene" id=3]
 [ext_resource path="res://art/0x72_DungeonTilesetII_v1.3.png" type="Texture" id=4]
+[ext_resource path="res://PersonalSpace.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "damage"
@@ -100,5 +101,9 @@ anims/reset = SubResource( 3 )
 
 [node name="Pivot" type="Node2D" parent="."]
 position = Vector2( 0, -6 )
+
+[node name="PersonalSpace" parent="." instance=ExtResource( 5 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PersonalSpace"]
 [connection signal="damaged" from="Hitbox" to="." method="_on_Hitbox_damaged"]
 [connection signal="immunity_ended" from="Hitbox" to="." method="_on_Hitbox_immunity_ended"]

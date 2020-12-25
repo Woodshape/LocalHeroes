@@ -14,6 +14,7 @@ onready var damage_animator = $DamageAnimator
 onready var attack_cooldown = $Timers/AttackCooldown
 onready var hitbox = $Hitbox
 onready var pivot = $Pivot
+onready var personal_space = $PersonalSpace
 
 onready var health = max_health setget set_health
 
@@ -34,8 +35,10 @@ func _apply_movement():
 	
 func move_towards(to):
 	var displacement = to - global_position
-	var normal = displacement.normalized()
-	velocity = lerp(velocity, normal * movespeed_units * Globals.UNIT_SIZE, get_move_weight())
+	var seek = displacement.normalized()
+	var avoidance = get_avoidance()
+	var direction = seek + avoidance
+	velocity = lerp(velocity, direction * movespeed_units * Globals.UNIT_SIZE, get_move_weight())
 	
 func get_move_weight():
 	return 0.2
@@ -55,6 +58,20 @@ func get_ideal_target():
 				
 	return nearest
 
+func get_avoidance():
+	var avoidance = Vector2()
+	var bodies = personal_space.get_overlapping_bodies()
+	var count = 0
+	for body in bodies:
+		if body != self && body.faction == faction:
+			avoidance += (global_position - body.global_position).normalized()
+			count += 1
+	
+	if count > 0:
+		avoidance = (avoidance / count).normalized()
+	
+	return avoidance
+	
 func _on_Hitbox_damaged(amount, knockback_strength, damage_source, attacker):
 	self.health -= amount
 	

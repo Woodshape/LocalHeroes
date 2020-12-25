@@ -25,13 +25,6 @@ func attack():
 	if weapon != null:
 		attack_cooldown.start(weapon.cooldown)
 		weapon.attack()
-		
-#	var attack_area = preload("res://attack/AttackArea.tscn").instance()
-#	add_child(attack_area)
-#
-#	var mouse = get_global_mouse_position() - global_position
-#	attack_area.position = mouse.normalized() * HAND_RADIUS
-#	attack_area.set_attacker(self)
 
 func skill_attack():
 	if weapon != null:
