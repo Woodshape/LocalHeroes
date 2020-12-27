@@ -18,3 +18,10 @@ func on_hit(hitbox):
 	if use_exceptions:
 		exceptions.append(hitbox)
 	emit_signal("hit")
+
+func get_base_damage():
+	var damage = 0
+	if attacker != null && attacker is Character:
+		damage = attacker.base_damage
+		
+	return damage	

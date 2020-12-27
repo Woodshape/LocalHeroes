@@ -19,13 +19,14 @@ extents = Vector2( 5, 8 )
 [node name="Grunt" instance=ExtResource( 1 )]
 scale = Vector2( 2, 2 )
 script = ExtResource( 5 )
-movespeed_units = 3.0
+movespeed = 4.0
 
 [node name="StateMachine" parent="." index="0"]
 script = ExtResource( 4 )
 
 [node name="Sprite" parent="Body" index="0"]
-visible = true
+position = Vector2( 0, -16 )
+offset = Vector2( 0, 0 )
 region_rect = Rect2( 368, 192, 16, 32 )
 
 [node name="CollisionShape2D" parent="." index="2"]
@@ -42,6 +43,7 @@ shape = SubResource( 2 )
 [node name="DamageArea" parent="." index="5" instance=ExtResource( 3 )]
 collision_layer = 1024
 collision_mask = 0
+damage_amount = 5
 attacker = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" index="0"]

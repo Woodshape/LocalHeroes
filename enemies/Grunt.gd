@@ -8,4 +8,4 @@ func _physics_process(delta):
 	if tar != null:
 		move_towards(tar.global_position)
 		
-	_apply_movement()	
+	apply_movement()	

@@ -5,13 +5,17 @@ enum Factions {ALLY, ENEMY}
 
 const KNOCKBACK_VELOCITY = 350
 
-export var movespeed_units := 8.0
+export var movespeed := 8.0
+export var dodgespeed := 16.0
 export var max_health := 100
+export var base_damage := 0
 export var knockback_modifier := 1.0
 export (Factions) var faction = 0
 
+onready var animator = $AnimationPlayer
 onready var damage_animator = $DamageAnimator
 onready var attack_cooldown = $Timers/AttackCooldown
+onready var dodge_cooldown = $Timers/DodgeCooldown
 onready var hitbox = $Hitbox
 onready var pivot = $Pivot
 onready var personal_space = $PersonalSpace
@@ -20,7 +24,8 @@ onready var health = max_health setget set_health
 
 var velocity := Vector2()
 var move_input := Vector2()
-var look := Vector2()
+var direction := Vector2()
+var facing := Vector2.RIGHT
 
 var weapon = null
 var target = null setget set_target,get_target
@@ -28,26 +33,26 @@ var target = null setget set_target,get_target
 func _physics_process(delta):
 	pivot.rotation = (get_global_mouse_position() - pivot.global_position).angle()
 #	if weapon != null:
-#		weapon.update_position(look)
-	
-func _apply_movement():
+#		weapon.update_position(facing)
+
+func apply_movement():
 	velocity = move_and_slide(velocity)	
-	
+
 func move_towards(to):
 	var displacement = to - global_position
 	var seek = displacement.normalized()
 	var avoidance = get_avoidance()
 	var direction = seek + avoidance
-	velocity = lerp(velocity, direction * movespeed_units * Globals.UNIT_SIZE, get_move_weight())
-	
+	velocity = lerp(velocity, direction * movespeed * Globals.UNIT_SIZE, get_move_weight())
+
 func get_move_weight():
 	return 0.2
-	
+
 func get_ideal_target():
 	var potential_targets = []
 	var nearest = null
 	var distance = INF
-
+	
 	var characters = Globals.arena.characters
 	for character in characters.get_children():
 		if character.faction == Factions.ALLY:
@@ -55,7 +60,7 @@ func get_ideal_target():
 			if distanceTo < distance:
 				nearest = character
 				distance = distanceTo
-				
+	
 	return nearest
 
 func get_avoidance():
@@ -63,7 +68,7 @@ func get_avoidance():
 	var bodies = personal_space.get_overlapping_bodies()
 	var count = 0
 	for body in bodies:
-		if body != self && body.faction == faction:
+		if body != self && body && body.faction == faction:
 			avoidance += (global_position - body.global_position).normalized()
 			count += 1
 	

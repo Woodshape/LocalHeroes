@@ -29,7 +29,7 @@ func _on_Hitbox_area_entered(area):
 	# or if we ignore our own hitbox
 	if area is DamageArea:
 		if !(self in area.exceptions):
-			damage(area.damage_amount, area.knockback_strength, area, area.attacker)
+			damage(area.get_base_damage() + area.damage_amount, area.knockback_strength, area, area.attacker)
 
 func damage(amount, knockback_strength, source, attacker):
 	emit_signal("damaged", amount, knockback_strength, source, attacker)

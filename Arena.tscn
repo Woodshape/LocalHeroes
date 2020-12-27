@@ -516,12 +516,30 @@ tile_data = PoolIntArray( 131074, 0, 0, 131075, 19, 0, 131076, 6, 0, 131077, 6, 
 
 [node name="PlayableCharacter" parent="Characters" instance=ExtResource( 1 )]
 position = Vector2( 163, 166 )
+max_health = 50
+base_damage = 5
 
 [node name="Grunt" parent="Characters" instance=ExtResource( 2 )]
-position = Vector2( 398.101, 206.475 )
+position = Vector2( 312, 274 )
+max_health = 30
+base_damage = 2
 
 [node name="Grunt2" parent="Characters" instance=ExtResource( 2 )]
-position = Vector2( 334.101, 397.475 )
+position = Vector2( 421, 175 )
+max_health = 30
+base_damage = 2
 
 [node name="Grunt3" parent="Characters" instance=ExtResource( 2 )]
-position = Vector2( 453.101, 205.475 )
+position = Vector2( 399, 332 )
+max_health = 30
+base_damage = 2
+
+[node name="Grunt4" parent="Characters" instance=ExtResource( 2 )]
+position = Vector2( 249, 406 )
+max_health = 30
+base_damage = 2
+
+[node name="Grunt5" parent="Characters" instance=ExtResource( 2 )]
+position = Vector2( 355, 448 )
+max_health = 30
+base_damage = 2

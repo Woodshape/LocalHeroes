@@ -5,6 +5,8 @@ public class PlayableCharacter : Character
 {
 	private PackedScene attackAreaScene = (PackedScene)GD.Load("res://attack/AttackArea.tscn");
 
+	public Vector2 Velocity;
+
 	public override void _UnhandledInput(InputEvent @event)
 	{
 		base._UnhandledInput(@event);

@@ -1,8 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\User\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\User\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_.19.00" t="ExcludeRecursive" />
-    <e p="D:\Development\Godot\LocalHero" t="IncludeFlat" />
+    <e p="C:\Users\User\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\User\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_.19.00" t="ExcludeRecursive" />
+    <e p="D:\Development\Godot\LocalHeroes" t="IncludeRecursive">
+      <e p=".mono" t="Include">
+        <e p="temp" t="Include">
+          <e p="bin" t="ExcludeRecursive" />
+          <e p="obj" t="ExcludeRecursive">
+            <e p="Debug" t="Include">
+              <e p="LocalHero.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="characters" t="Include">
+        <e p="StateMachine.cs" t="Include" />
+      </e>
+      <e p="enemies" t="Include">
+        <e p="Node.cs" t="Include" />
+      </e>
+      <e p="LocalHero.csproj" t="IncludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="scripts" t="Include">
+        <e p="Character.cs" t="Include" />
+        <e p="Grunt.cs" t="Include" />
+        <e p="Hitbox.cs" t="Include" />
+        <e p="PlayableCharacter.cs" t="Include" />
+      </e>
+    </e>
   </component>
 </project>

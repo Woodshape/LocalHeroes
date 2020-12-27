@@ -7,7 +7,7 @@ export var radius := 8.0
 
 onready var attack_animator = $AttackAnimator
 onready var tween = $Tween
-onready var damage_area = $DamageArea
+onready var damage_area = $Pivot/DamageArea
 onready var pivot = $Pivot
 
 var is_skill_active = false

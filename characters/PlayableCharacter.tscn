@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://characters/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://items/Weapon.tscn" type="PackedScene" id=2]
 [ext_resource path="res://characters/PlayableCharacter.gd" type="Script" id=3]
+[ext_resource path="res://characters/PlayerFSM.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.67644, 4.53376 )
@@ -15,6 +16,13 @@ extents = Vector2( 5.06902, 4.53438 )
 [node name="PlayableCharacter" instance=ExtResource( 1 )]
 scale = Vector2( 2, 2 )
 script = ExtResource( 3 )
+base_damage = 100
+
+[node name="StateMachine" parent="." index="0"]
+script = ExtResource( 4 )
+
+[node name="Body" parent="." index="1"]
+modulate = Color( 1, 0, 0, 1 )
 
 [node name="Sprite" parent="Body" index="0"]
 visible = true
@@ -25,13 +33,27 @@ shape = SubResource( 1 )
 
 [node name="Hitbox" parent="." index="4"]
 collision_mask = 1024
+immunity_duration = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="1"]
 position = Vector2( -0.58992, -4.48341 )
 shape = SubResource( 2 )
 
 [node name="Weapon" parent="Pivot" index="0" instance=ExtResource( 2 )]
+rotation = -1.5708
+
+[node name="Pivot" parent="Pivot/Weapon" index="0"]
+rotation = -0.785398
+
+[node name="DamageArea" parent="Pivot/Weapon/Pivot" index="1"]
+damage_amount = 5
+attacker = NodePath("../../../..")
+
+[node name="CollisionShape2D" parent="Pivot/Weapon/Pivot/DamageArea" index="0"]
+disabled = false
 
 [node name="CollisionShape2D" parent="PersonalSpace" index="0"]
 position = Vector2( 0, -6 )
 shape = SubResource( 3 )
+
+[editable path="Pivot/Weapon"]
