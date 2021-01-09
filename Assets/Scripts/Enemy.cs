@@ -29,6 +29,7 @@ public class Enemy : Character
         if (action != null)
         {
             currentAction = action;
+            //currentAction.Perform();
         }
 
         currentAction?.Perform();
