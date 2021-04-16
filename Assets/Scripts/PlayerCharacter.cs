@@ -37,6 +37,7 @@ public class PlayerCharacter : Character
     private void ProcessFacing()
     {
         var facing = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
-        pivot.localScale = facing.x >= 0 ? new Vector3(1f, 1, 1) : new Vector3(1f, -1, 1);
+        pivot.localScale = facing.x >= 0 ? new Vector3(1f, 1f, 1f) : new Vector3(1f, -1f, 1f);
+        sprite.localScale = facing.x >= 0 ? new Vector3(1f, 1f, 1f) : new Vector3(-1f, 1f, 1f);
     }
 }

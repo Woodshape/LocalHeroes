@@ -9,8 +9,10 @@ public class DamageArea : MonoBehaviour
     {
         if (other.GetComponent<Health>() != null)
         {
-            other.GetComponent<Health>().TakeDamage(3);
-            Debug.Log($"{other} takes {3} damage");
+            var damage = 3;
+            
+            other.GetComponent<Health>().TakeDamage(damage);
+            Debug.Log($"{other} takes {damage} damage");
         }
     }
 }
