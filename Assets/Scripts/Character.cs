@@ -1,15 +1,22 @@
 using System;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.Serialization;
 using UnityEngine.Timeline;
 
 public class Character : MonoBehaviour
 {
+    [FormerlySerializedAs("MoveSpeed")]
     [Header("Movement")]
-    [SerializeField] protected float MoveSpeed = 4.0f;
-    [SerializeField] protected Vector2 MoveInput = Vector2.zero;
+    [SerializeField] protected float moveSpeed = 4.0f;
+    [FormerlySerializedAs("MoveInput")]
+    [SerializeField] protected Vector2 moveInput = Vector2.zero;
+    
     protected float Movement = 1f;
-    protected Rigidbody2D Body;
+
+    public float AttackSpeed { get; set; } = 1f;
+
+    public Rigidbody2D Body;
     
     [Header("GameObject")]
     [SerializeField] protected Transform pivot;
@@ -32,9 +39,9 @@ public class Character : MonoBehaviour
 
     protected void FixedUpdate()
     {
-        Body.velocity = MoveInput * (Movement * MoveSpeed);
+        Body.velocity = moveInput * (Movement * moveSpeed);
 
-        if (MoveInput.x < 0)
+        if (moveInput.x < 0)
         {
             sprite.localScale = new Vector3(-1f, 1f, 1f);
         }

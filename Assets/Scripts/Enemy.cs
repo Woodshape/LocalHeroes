@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : Character
 {
-    [Header("AI")] public ActionEvaluator brain;
+    [Header("AI")] ActionEvaluator brain;
 
     private Action currentAction;
     
@@ -14,7 +14,7 @@ public class Enemy : Character
         base.Start();
 
         brain = new ActionEvaluator();
-        
+
         SceneContents.Instance.AddEnemy(this);
     }
 
@@ -24,14 +24,16 @@ public class Enemy : Character
         brain.Update();
         Action action = brain.TrySelectAction(this);
         
-        MoveInput = GetMovementIntention(this);
+        moveInput = GetMovementIntention(this);
 
+        //  update current action
         if (action != null)
         {
             currentAction = action;
             //currentAction.Perform();
         }
 
+        //  perform current action
         currentAction?.Perform();
     }
 
@@ -53,7 +55,7 @@ public class Enemy : Character
 
             float springStrength = distance - TARGET_DISTANCE;
 
-            intention += direction * springStrength; 
+            intention += direction * springStrength;
         }
 
         foreach (Enemy otherEnemy in SceneContents.Instance.Enemies)
@@ -113,7 +115,7 @@ public class Enemy : Character
         float targetDistance = 1.5f;
         float score = FindAttackScore(enemy, character, targetDistance);
 
-        return (Strategy.PRIMARY, score, new MeleeAction());
+        return (Strategy.PRIMARY, score, new MeleeAction(enemy, character));
     }
 
     public (Strategy strategy, float score, Action action) EvaluateChase(Enemy enemy, PlayerCharacter character)

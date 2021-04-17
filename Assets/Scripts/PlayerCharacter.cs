@@ -1,9 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
 using UnityEngine;
 
 public class PlayerCharacter : Character
 {
+    private float normalSpeed;
+    private float evadeTimer;
+    private bool evading;
+    private float evadeCooldown;
+    [SerializeField] private float evadeCooldownTime;
+    [SerializeField] private float evadeTime;
+    [SerializeField] private float evadeDistance;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,14 +32,44 @@ public class PlayerCharacter : Character
     
     private void ProcessInput()
     {
-        MoveInput.x = Input.GetAxisRaw("Horizontal");
-        MoveInput.y = Input.GetAxisRaw("Vertical");
-        Movement = Mathf.Clamp(MoveInput.magnitude, 0.0f, 1.0f);
-        MoveInput.Normalize();
-
         if (Input.GetMouseButtonDown(0))
         {
             weaponAnimator.SetTrigger("Attack");
+        }
+
+        
+        if (!evading && evadeCooldown == 0 && Input.GetButtonDown("Jump"))
+        {
+            evading = true;
+            evadeTimer = evadeTime;
+            evadeCooldown = evadeCooldownTime;
+            normalSpeed = moveSpeed;
+            //animator.SetTrigger("Evading");
+        }
+
+        if (evading)
+        {
+            Debug.Log("evade");
+            evadeTimer = Mathf.Max(0f, evadeTimer - Time.deltaTime);
+
+            //moveInput = transform.forward;
+            moveSpeed = evadeDistance / evadeTime;
+
+            if (evadeTimer == 0)
+            {
+                evading = false;
+                moveSpeed = normalSpeed;
+            }
+        }
+        else
+        {
+            evadeCooldown = Mathf.Max(0f, evadeCooldown - Time.deltaTime);
+            
+            moveInput.x = Input.GetAxisRaw("Horizontal");
+            moveInput.y = Input.GetAxisRaw("Vertical");
+            
+            Movement = Mathf.Clamp(moveInput.magnitude, 0.0f, 1.0f);
+            moveInput.Normalize();
         }
     }
     
